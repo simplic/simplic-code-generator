@@ -1,0 +1,38 @@
+﻿using Simplic.Cache;
+using Simplic.Data.Sql;
+using Simplic.Sql;
+using System;
+
+namespace ..NameSpaceName..
+{   
+    public class ..ClassRepository.. : SqlRepositoryBase<Guid, ..ClassModel..>, I..ClassRepository..
+    {
+        /// <summary>
+        /// Initialize repository
+        /// </summary>
+        /// <param name="sqlService">Sql service instance</param>
+        /// <param name="sqlColumnService">Sql column service</param>
+        /// <param name="cacheService">Cache service</param>
+        public ..ClassRepository..(ISqlService sqlService, ISqlColumnService sqlColumnService, ICacheService cacheService) : base(sqlService, sqlColumnService, cacheService)
+        {
+            UseCache = true;
+        }
+
+        /// <summary>
+        /// Gets the unique object id
+        /// </summary>
+        /// <param name="obj">Object instance</param>
+        /// <returns>Unique id</returns>
+        public override Guid GetId(..ClassModel.. obj) => obj.Guid;
+
+        /// <summary>
+        /// Gets the primary column "Guid"
+        /// </summary>
+        public override string PrimaryKeyColumn => ..PrimaryKeyColumn..;
+
+        /// <summary>
+        /// Gets the table name ..TableName..
+        /// </summary>
+        public override string TableName => ..TableName..;
+    }
+}

@@ -1,0 +1,15 @@
+﻿using Simplic.OxS.Data;
+
+namespace ..NameSpaceName..
+{
+    /// <summary>
+    /// A mongo db filter for .
+    /// </summary>
+    public class ..ClassFilter.. : IFilter<Guid>
+    {
+        /// <summary>
+        /// Gest or sets the id.
+        /// </summary>
+        public Guid Id { get; set; }
+    }
+}
