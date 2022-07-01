@@ -74,5 +74,8 @@
     <Content Include="Templates\ReleaseNotesTemplate.txt" />
     <Content Include="Templates\UserReleaseNotesTemplate.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\ComponentStructure.json" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
