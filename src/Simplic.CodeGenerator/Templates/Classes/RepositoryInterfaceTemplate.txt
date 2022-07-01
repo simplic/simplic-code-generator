@@ -1,0 +1,10 @@
+﻿using Simplic.Data;
+using System;
+
+namespace ..NameSpaceName..
+{
+    public interface I..ClassRepository.. : IRepositoryBase<Guid, ..ClassModel..>
+    {
+
+    }
+}

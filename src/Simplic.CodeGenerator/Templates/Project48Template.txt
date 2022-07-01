@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0E3D9B36-95CC-4290-9819-4AFF5AFEAA7C}</ProjectGuid>
+    <ProjectGuid>{..ProjectGuid..}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simplic.CodeGenerator</RootNamespace>
-    <AssemblyName>Simplic.CodeGenerator</AssemblyName>
+    <RootNamespace>..ProjectName..</RootNamespace>
+    <AssemblyName>..ProjectName..</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,38 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ICodeGeneratorRepository.cs" />
-    <Compile Include="Interfaces\ICodeGeneratorService.cs" />
-    <Compile Include="Model\CodeGenerator.cs" />
-    <Compile Include="Model\Component.cs" />
-    <Compile Include="Model\ComponentConfig.cs" />
-    <Compile Include="Model\DataType.cs" />
-    <Compile Include="Model\Property.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Templates\AzurePipelineTemplate.txt" />
+    ..ProjectClasses..
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Simplic.Data">
-      <Version>2.0.322.323</Version>
+    ..ProjectReferences..
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Templates\Classes\ApplicationHelperTemplate.txt" />
-    <Content Include="Templates\Classes\FilterTemplate.txt" />
-    <Content Include="Templates\Classes\MapperTemplate.txt" />
-    <Content Include="Templates\Classes\ModelTemplate.txt" />
-    <Content Include="Templates\Classes\RepositoryInterfaceTemplate.txt" />
-    <Content Include="Templates\Classes\RepositoryTemplate.txt" />
-    <Content Include="Templates\Classes\ServiceInterfaceTemplate.txt" />
-    <Content Include="Templates\Classes\ServiceTemplate.txt" />
-    <Content Include="Templates\Classes\ViewModelTemplate.txt" />
-    <Content Include="Templates\Classes\WindowInterfaceTemplate.txt" />
-    <Content Include="Templates\Classes\WindowCsTemplate.txt" />
-    <Content Include="Templates\Classes\WindowTemplate.txt" />
-    <Content Include="Templates\Project48Template.txt" />
-    <Content Include="Templates\Project60Template.txt" />
-    <Content Include="Templates\ReleaseNotesTemplate.txt" />
-    <Content Include="Templates\UserReleaseNotesTemplate.txt" />
+    <PackageReference Include="Simplic.Data">
+      <Version>1.7.121.809</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

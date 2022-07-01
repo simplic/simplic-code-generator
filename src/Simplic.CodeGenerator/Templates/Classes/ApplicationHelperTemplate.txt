@@ -1,0 +1,18 @@
+﻿using Simplic.Framework.DBUI;
+using System;
+
+namespace ..NameSpaceName..
+{
+    public class ..ClassApplicationHelper.. : GridWindowApplicationHelper<Guid, ..ClassModel.., ..ClassViewModel..>
+    {
+        /// <summary>
+        /// Gets the name of the primary key column.
+        /// </summary>
+        public override string PrimaryKeyColumn => ..PrimaryKeyColumnValue..;
+
+        /// <summary>
+        /// Gets the type of the window interface.
+        /// </summary>
+        public override Type WindowInterface => typeof(..InterfaceWindow..);
+    }
+}

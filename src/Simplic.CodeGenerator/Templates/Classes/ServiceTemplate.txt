@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ..NameSpaceName..
+{
+    /// <summary>
+    /// Implemantion of <see cref="I..ClassService.."/>
+    /// </summary>
+    public class ..ClassService.. : I..ClassService..
+    {
+        private readonly I..ClassRepository.. repository;
+
+        /// <summary>
+        /// Initialize service
+        /// </summary>
+        /// <param name="repository">Attached repository</param>
+        public ..ClassService..(I..ClassRepository.. repository)
+        {
+            this.repository = repository;
+        }
+
+        /// <summary>
+        /// Deletes a ..ClassModel..
+        /// </summary>
+        /// <param name="obj">..ClassModel.. instance</param>
+        /// <returns>True if deleting was successfull</returns>
+        public bool Delete(..ClassModel.. obj) => repository.Delete(obj);
+
+        /// <summary>
+        /// Deletes a ..ClassModel..
+        /// </summary>
+        /// <param name="id">..ClassModel.. id</param>
+        /// <returns>True if deleting was successfull</returns>
+        public bool Delete(Guid id) => repository.Delete(id);
+
+        /// <summary>
+        /// Loads a..ClassModel.. by its unique id
+        /// </summary>
+        /// <param name="id">Unique ..ClassModel.. id</param>
+        /// <returns>..ClassModel.. if exsts, else null</returns>
+        public ..ClassModel.. Get(Guid id) => repository.Get(id);
+
+        /// <summary>
+        /// Returns an enumerable of all ..ClassModel..
+        /// </summary>
+        /// <returns>Enumrable of ..ClassModel..</returns>
+        public IEnumerable<..ClassModel..> GetAll() => repository.GetAll();
+
+        /// <summary>
+        /// Creates or updates a ..ClassModel..
+        /// </summary>
+        /// <param name="obj">..ClassModel.. instance</param>
+        /// <returns>True if create or update was successful</returns>
+        public bool Save(..ClassModel.. obj) => repository.Save(obj);
+    }
+}

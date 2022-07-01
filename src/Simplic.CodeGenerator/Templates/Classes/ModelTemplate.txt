@@ -1,0 +1,9 @@
+﻿using System;
+
+namespace ..NameSpaceName..
+{
+    public class ..ClassModel..
+    {
+        ..ClassProperties..
+    }
+}

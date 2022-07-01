@@ -1,0 +1,40 @@
+﻿using using Simplic.Framework.UI;
+using Simplic.Localization;
+using Simplic.Studio.UI;
+using System;
+
+namespace ..NameSpaceName..
+{
+    /// <summary>
+    /// Represents a viewmodel for managing. <see cref="..ClassModel.."/>
+    /// </summary>
+    public class ..ClassViewModel.. : ExtendableViewModel, IWindowViewModel<..ClassModel..>
+    {
+        private ..ClassModel.. model;
+        private readonly ILocalizationService localizationService;
+
+        public ..ClassName..()
+        {
+            localizationService = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILocalizationService>();
+        }
+
+        /// <summary>
+        /// Initialize viewmodel instance.
+        /// </summary>
+        /// <param name="model"></param>
+        public void Initialize(..ClassModel.. model)
+        {
+            this.model = model;
+        }
+
+        /// <summary>
+        /// Gets an instance of the actual <see cref="..ClassModel.."/>
+        /// </summary>
+        public ..ClassModel.. Model => model;
+
+        /// <summary>
+        /// Gets the actual window title.
+        /// </summary>
+        public string WindowTitle => "WindowName";
+    }
+}
