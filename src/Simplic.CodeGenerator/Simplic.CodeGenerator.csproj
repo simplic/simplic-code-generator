@@ -46,6 +46,7 @@
     <Compile Include="Model\CodeGenerator.cs" />
     <Compile Include="Model\Component.cs" />
     <Compile Include="Model\ComponentConfig.cs" />
+    <Compile Include="Model\ComponentStructure.cs" />
     <Compile Include="Model\DataType.cs" />
     <Compile Include="Model\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

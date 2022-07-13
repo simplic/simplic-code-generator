@@ -21,6 +21,8 @@ namespace Simplic.CodeGenerator
 
         public string Template { get; set; }
 
+        public string ComponentConfigName { get; set; }
+
         public IList<Component> Children { get; set; }
 
         public IList<Property> Properties { get; set; }

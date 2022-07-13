@@ -1,0 +1,42 @@
+﻿<Window x:Class="Simplic.CodeGenerator.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:simplic="http://schemas.simplic-systems.com/2016/xaml/presentation"
+        xmlns:templating="clr-namespace:Simplic.Framework.UI.Templating;assembly=Simplic.Framework.Base"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Simplic.CodeGenerator.UI" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <templating:TemplateManager x:Key="templateManager"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Simplic.PlugIn.SAC;component/Resources/SACResourceDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <simplic:UIContentPresenter x:Name="SplitButtonContentPresenter" DataTemplateName="SplitButtonTemplate"
+                                     Grid.Row="0" Grid.Column="0">
+            <simplic:UIContentPresenter.Templates>
+                <simplic:UITemplate TemplatePath="WindowTemplate.xaml" >
+                    <simplic:UITemplate.Selector>
+                        <simplic:ByTypeSelector DataType="{x:Type local:MainViewModel}"/>
+                    </simplic:UITemplate.Selector>
+                </simplic:UITemplate>
+            </simplic:UIContentPresenter.Templates>
+        </simplic:UIContentPresenter>
+
+    </Grid>
+</Window>

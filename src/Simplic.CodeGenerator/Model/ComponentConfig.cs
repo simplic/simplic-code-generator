@@ -8,15 +8,15 @@ namespace Simplic.CodeGenerator
 {
     public class ComponentConfig
     {
-        public Guid Guid { get; set; }
-
         public string Name { get; set; }
 
         public string Template { get; set; }
 
-        public IList<ComponentConfig> Parents { get; set; }
+        public string Ending { get; set; }
 
-        public IList<Property> properties { get; set; }
+        public IList<string> Parents { get; set; }
+
+        public IList<Property> Properties { get; set; }
 
     }
 }
