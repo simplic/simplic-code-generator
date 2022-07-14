@@ -2,7 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Simplic.CodeGenerator.UI" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:local="clr-namespace:Simplic.CodeGenerator.UI"
+        xmlns:simplic="http://schemas.simplic-systems.com/2016/xaml/presentation"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         mc:Ignorable="d">
     <DataTemplate x:Key="SplitButtonTemplate">
         <Grid>
@@ -40,6 +42,7 @@
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
@@ -57,7 +60,14 @@
                                 </telerik:RadSplitButton.DropDownContent>
                             </telerik:RadSplitButton>
                             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ComponentName}"/>
+                            <simplic:UIContentPresenter x:Name="PropertyGridPresenter" DataTemplateName="PropertyGridTemplate"
+                                                        Grid.Row="2">
+                                <simplic:UIContentPresenter.Templates>
+                                    <simplic:UITemplate TemplatePath="PropertyGridTemplate.xaml" />
+                                </simplic:UIContentPresenter.Templates>
 
+                            </simplic:UIContentPresenter>
+                            
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

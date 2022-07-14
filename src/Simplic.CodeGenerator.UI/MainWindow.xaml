@@ -8,14 +8,7 @@
         xmlns:local="clr-namespace:Simplic.CodeGenerator.UI" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <ResourceDictionary>
-            <templating:TemplateManager x:Key="templateManager"/>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Simplic.PlugIn.SAC;component/Resources/SACResourceDictionary.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
@@ -37,6 +30,7 @@
                 </simplic:UITemplate>
             </simplic:UIContentPresenter.Templates>
         </simplic:UIContentPresenter>
-
+        
     </Grid>
+    </ScrollViewer>
 </Window>

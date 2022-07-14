@@ -23,6 +23,9 @@ namespace Simplic.CodeGenerator.UI
 
             addNewComponent = new RelayCommand((e) =>
             {
+                if (e == null)
+                    return;
+
                 componentConfig = (ComponentConfig)e;
                 codeGeneratorViewModel = new ConfigViewModel(componentConfig, configViews);
             });
