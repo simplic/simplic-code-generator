@@ -1,13 +1,9 @@
 ﻿using Newtonsoft.Json;
-using Simplic.Framework.UI;
 using Simplic.UI.MVC;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,82 +13,67 @@ namespace Simplic.CodeGenerator.UI
     {
         private readonly IList<ComponentConfig> componentConfigList;
         private readonly ComponentStructure componentStructure;
-        private string parent;
+        private ConfigViewModel parent;
         private string componentName;
         private ComponentConfig componentConfig;
-        private ComponentConfig componentConfig2;
         private ICommand addNewComponent;
         private ConfigViewModel codeGeneratorViewModel;
-        private ObservableCollection<ConfigViewModel> configViews;
+        private Component component;
 
 
-        public ConfigViewModel(ComponentConfig componentConfig, ObservableCollection<ConfigViewModel> configViews, string parent)
+        public ConfigViewModel(Component component, ConfigViewModel parent)
         {
-            this.configViews = configViews;
             this.parent = parent;
-            componentName = componentConfig.Name;
+            this.component = component;
+            componentName = component.Config.Name;
             componentConfigList = new List<ComponentConfig>();
-            var fileName = @"C:\Users\patyk\source\repos\simplic-code-generator\src\Simplic.CodeGenerator\Config\ComponentStructure.json";
+            var fileName = @"..\..\..\Simplic.CodeGenerator\Config\ComponentStructure.json";
             var jsonString = File.ReadAllText(fileName);
             componentStructure = JsonConvert.DeserializeObject<ComponentStructure>(jsonString);
-            componentConfig2 = componentConfig;
 
-            foreach(var component in componentStructure.ComponentStructureDict)
+            foreach(var componentStruc in componentStructure.ComponentStructureDict)
             {
-                component.Value.Name = component.Key;
-                if(component.Value.Parents.Contains(componentName)) 
-                    componentConfigList.Add(component.Value);
-            }
-
-            if(configViews.Count == 0 && componentName != "none")
-                this.configViews.Add(this);
+                componentStruc.Value.Name = componentStruc.Key;
+                if(componentStruc.Value.Parents.Contains(componentName)) 
+                    componentConfigList.Add(componentStruc.Value);
+            }             
 
             addNewComponent = new RelayCommand((e) =>
             {
                 if(e == null) 
                     return;
 
-                componentConfig = (ComponentConfig)e;
-                codeGeneratorViewModel = new ConfigViewModel(componentConfig, this.configViews, componentName);
-
-                var lastParent = this.configViews.Where(x => x.parent == codeGeneratorViewModel.Parent 
-                || x.componentName == codeGeneratorViewModel.Parent).LastOrDefault();
-
-                if (lastParent == null)
-                {
-                    this.configViews.Add(codeGeneratorViewModel);
-                    return;
-                }
-                    
-                var newIndex = this.configViews.IndexOf(lastParent) + 1;
-                this.configViews.Insert(newIndex, codeGeneratorViewModel);
+                var newComponent = new Component() { Config = (ComponentConfig)e };
+                codeGeneratorViewModel = new ConfigViewModel(newComponent, this);
+                codeGeneratorViewModel.ComponentConfig = (ComponentConfig)e;
+                component.Children.Add(codeGeneratorViewModel.component);
+                ConfigViewModels.Add(codeGeneratorViewModel);
+                
+                parent = codeGeneratorViewModel.parent;
+                
             });
-
         }
+
+        public ObservableCollection<ConfigViewModel> ConfigViewModels { get; set; } = new ObservableCollection<ConfigViewModel>();
+
         public IList<ComponentConfig> ComponentConfigList => componentConfigList;
-
-        public ComponentStructure ComponentStructure => componentStructure;
-
-        public ObservableCollection<ConfigViewModel> ConfigViews => configViews;
-
-        public string Parent => this.parent;
 
         public string ComponentName
         {
             get => this.componentName;
             set => componentName = value;
-        } 
+        }
+
+        public Component Component
+        {
+            get => this.component;
+            set => component = value;
+        }
 
         public ComponentConfig ComponentConfig
         {
             get => this.componentConfig;
             set => this.componentConfig = value;
-        }
-
-        public ComponentConfig ComponentConfig2
-        {
-            get => this.componentConfig2;
-            set => this.componentConfig2 = value;
         }
 
         public ICommand AddNewComponent
@@ -102,5 +83,8 @@ namespace Simplic.CodeGenerator.UI
             set => this.addNewComponent = value;
         }
 
+        public Visibility PropertyVisible => (Component.Config.Properties.Any()) ? Visibility.Visible : Visibility.Collapsed;
+
+        public Visibility AddButtonVisible => (ComponentConfigList.Any()) ? Visibility.Visible : Visibility.Collapsed; 
     }
 }

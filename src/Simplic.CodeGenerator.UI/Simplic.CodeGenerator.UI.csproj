@@ -182,6 +182,12 @@
     <PackageReference Include="Telerik.Windows.Controls.Input.for.Wpf.Xaml">
       <Version>2022.1.222</Version>
     </PackageReference>
+    <PackageReference Include="Telerik.Windows.Controls.Navigation.for.Wpf.Xaml">
+      <Version>2022.1.222</Version>
+    </PackageReference>
+    <PackageReference Include="Telerik.Windows.Controls.RibbonView.for.Wpf.Xaml">
+      <Version>2022.1.222</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

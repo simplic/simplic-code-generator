@@ -19,13 +19,10 @@ namespace Simplic.CodeGenerator
 
         public string NameSpace { get; set; }
 
-        public string Template { get; set; }
+        public ComponentConfig Config { get; set; }
 
-        public string ComponentConfigName { get; set; }
+        public IList<Component> Children { get; set; } = new List<Component>();
 
-        public IList<Component> Children { get; set; }
-
-        public IList<Property> Properties { get; set; }
     }
 
     public static class TestClass { 
@@ -42,7 +39,7 @@ namespace Simplic.CodeGenerator
 
             var modelClass = new Component();
             modelClass.Name = "Fahrzeug";
-            modelClass.Properties = new List<Property>();
+            modelClass.Config.Properties = new List<Property>();
 
             var modelProperty = new Property();
             modelProperty.Name = "Guid";
@@ -54,8 +51,8 @@ namespace Simplic.CodeGenerator
             modelProperty2.Value = "string";
             modelProperty2.Comment = "Name property";
 
-            modelClass.Properties.Add(modelProperty);
-            modelClass.Properties.Add(modelProperty2);
+            modelClass.Config.Properties.Add(modelProperty);
+            modelClass.Config.Properties.Add(modelProperty2);
             projectModel.Children.Add(modelClass);
             solution.Children.Add(projectModel);
 

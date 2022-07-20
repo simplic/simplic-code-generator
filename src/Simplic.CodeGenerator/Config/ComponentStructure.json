@@ -82,6 +82,10 @@
       "template": "ClassTemplate",
       "ending": ".cs",
       "properties": [
+        {
+          "name": "",
+          "type": ""
+        }
       ]
     },
 
@@ -90,6 +94,10 @@
       "template": "ModelTemplate",
       "ending": ".cs",
       "properties": [
+        {
+          "name": "",
+          "type": ""
+        }
       ]
     },
     "Filter": {
@@ -97,6 +105,10 @@
       "template": "FilterTemplate",
       "ending": ".cs",
       "properties": [
+        {
+          "name": "",
+          "type": ""
+        }
       ]
     },
     "Repository": {
@@ -197,6 +209,10 @@
       "template": "MapperTemplate",
       "ending": ".cs",
       "properties": [
+        {
+          "name": "",
+          "type": ""
+        }
       ]
     },
     "MongoDB": {

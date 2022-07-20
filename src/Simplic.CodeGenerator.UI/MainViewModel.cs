@@ -1,10 +1,5 @@
 ﻿using Simplic.UI.MVC;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Simplic.CodeGenerator.UI
@@ -14,28 +9,30 @@ namespace Simplic.CodeGenerator.UI
         private ConfigViewModel codeGeneratorViewModel;
         private ComponentConfig componentConfig;
         private ICommand addNewComponent;
-        private ObservableCollection<ConfigViewModel> configViews;
-        private string parent;
+        private Component component;
         public MainViewModel()
         {
-            parent = "none";
-            configViews = new ObservableCollection<ConfigViewModel>();  
+            component = new Component();
+           
             componentConfig = new ComponentConfig() { Name = "none" };
-            codeGeneratorViewModel = new ConfigViewModel(componentConfig, configViews, parent);
+            component.Config = componentConfig;
+
+            codeGeneratorViewModel = new ConfigViewModel(component, null);
+            ConfigView = codeGeneratorViewModel;
 
             addNewComponent = new RelayCommand((e) =>
             {
                 if (e == null)
                     return;
 
-                componentConfig = (ComponentConfig)e;
-                codeGeneratorViewModel = new ConfigViewModel(componentConfig, configViews, parent);
+                component = new Component();
+                component.Config = (ComponentConfig)e;
+                if (!ConfigView.ConfigViewModels.Any())
+                    ConfigView.ConfigViewModels.Add(new ConfigViewModel(component, null));
             });
         }
 
-        public ConfigViewModel ConfigView => codeGeneratorViewModel;
-
-        public string Parent => parent;
+        public ConfigViewModel ConfigView { get; set; }
 
         public ICommand AddNewComponent
         {
