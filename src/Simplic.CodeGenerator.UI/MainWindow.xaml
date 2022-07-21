@@ -9,28 +9,28 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <simplic:UIContentPresenter x:Name="SplitButtonContentPresenter" DataTemplateName="SplitButtonTemplate"
-                                     Grid.Row="0" Grid.Column="0">
-            <simplic:UIContentPresenter.Templates>
-                <simplic:UITemplate TemplatePath="WindowTemplate.xaml" >
-                    <simplic:UITemplate.Selector>
-                        <simplic:ByTypeSelector DataType="{x:Type local:MainViewModel}"/>
-                    </simplic:UITemplate.Selector>
-                </simplic:UITemplate>
-            </simplic:UIContentPresenter.Templates>
-        </simplic:UIContentPresenter>
-        
-    </Grid>
+            <simplic:UIContentPresenter x:Name="SplitButtonContentPresenter" DataTemplateName="SplitButtonTemplate">
+                <simplic:UIContentPresenter.Templates>
+                    <simplic:UITemplate TemplatePath="WindowTemplate.xaml" >
+                        <simplic:UITemplate.Selector>
+                            <simplic:ByTypeSelector DataType="{x:Type local:MainViewModel}"/>
+                        </simplic:UITemplate.Selector>
+                    </simplic:UITemplate>
+                </simplic:UIContentPresenter.Templates>
+            </simplic:UIContentPresenter>
+
+            <simplic:TextBox Text="Test" Grid.Column="1"/>
+        </Grid>
     </ScrollViewer>
 </Window>

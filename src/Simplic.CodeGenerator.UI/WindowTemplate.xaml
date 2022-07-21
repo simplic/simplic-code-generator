@@ -20,7 +20,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <telerik:RadSplitButton AutoOpenDelay="0:0:0.0" Content="Add" Grid.Row="0" Grid.Column="0"
+            <telerik:RadSplitButton AutoOpenDelay="0:0:0.5" Content="Add"
                                     CommandParameter="{Binding ConfigView.ComponentConfig}" Command="{Binding AddNewComponent}" >
                 <telerik:RadSplitButton.DropDownContent>
                     <ListBox ItemsSource="{Binding ConfigView.ComponentConfigList}" 
@@ -34,9 +34,7 @@
                 </telerik:RadSplitButton.DropDownContent>
             </telerik:RadSplitButton>
 
-
-
-            <telerikView:RadTreeView ItemsSource="{Binding ConfigView.ConfigViewModels}" Grid.Row="1" Grid.Column="0">
+            <telerikView:RadTreeView ItemsSource="{Binding ConfigView.ConfigViewModels}" Grid.Row="1">
                 <telerikView:RadTreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding ConfigViewModels}">
                         <Grid>
@@ -51,9 +49,14 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <telerik:RadSplitButton AutoOpenDelay="0:0:0.0" Content="Add" 
-                                                    Grid.Row="1" Grid.Column="0" Visibility="{Binding AddButtonVisible}"
-                                                    CommandParameter="{Binding ComponentConfig}" Command="{Binding AddNewComponent}" >
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Name:"/>
+                                <simplic:TextBox Text="{Binding Component.Name}" Width="100"/>
+                            </StackPanel>
+
+                            <telerik:RadSplitButton AutoOpenDelay="0:0:0.5" Content="{Binding AddButtonName}" 
+                                                    Grid.Row="2"  Visibility="{Binding AddButtonVisible}"
+                                                    CommandParameter="{Binding ComponentConfig}" Command="{Binding AddNewComponent}">
                                 <telerik:RadSplitButton.DropDownContent>
                                     <ListBox ItemsSource="{Binding ComponentConfigList}" SelectedItem="{Binding ComponentConfig, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                         <ListBox.ItemTemplate>
@@ -64,21 +67,20 @@
                                     </ListBox>
                                 </telerik:RadSplitButton.DropDownContent>
                             </telerik:RadSplitButton>
-                            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ComponentName}" IsReadOnly="True"/>
+                            <Label Grid.Row="2" Grid.Column="1" Content="{Binding ComponentName}" 
+                                     Visibility="{Binding AddButtonVisible}"/>
                             <simplic:UIContentPresenter x:Name="PropertyGridPresenter" DataTemplateName="PropertyGridTemplate"
-                                                        Grid.Row="2" Visibility="{Binding PropertyVisible}">
+                                                        Grid.Row="3" Visibility="{Binding PropertyVisible}">
                                 <simplic:UIContentPresenter.Templates>
                                     <simplic:UITemplate TemplatePath="PropertyGridTemplate.xaml" />
                                 </simplic:UIContentPresenter.Templates>
-
                             </simplic:UIContentPresenter>
 
                         </Grid>
                     </HierarchicalDataTemplate>
                 </telerikView:RadTreeView.ItemTemplate>
             </telerikView:RadTreeView>
-            
-            
+
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

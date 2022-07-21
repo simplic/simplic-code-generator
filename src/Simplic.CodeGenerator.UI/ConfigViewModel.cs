@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Simplic.CodeGenerator.UI
 {
-    public class ConfigViewModel
+    public class ConfigViewModel : ExtendableViewModelBase
     {
         private readonly IList<ComponentConfig> componentConfigList;
         private readonly ComponentStructure componentStructure;
@@ -73,7 +73,11 @@ namespace Simplic.CodeGenerator.UI
         public ComponentConfig ComponentConfig
         {
             get => this.componentConfig;
-            set => this.componentConfig = value;
+            set
+            {
+                PropertySetter(value, (v) => this.componentConfig = v);
+                RaisePropertyChanged(nameof(AddButtonName));
+            }
         }
 
         public ICommand AddNewComponent
@@ -85,6 +89,8 @@ namespace Simplic.CodeGenerator.UI
 
         public Visibility PropertyVisible => (Component.Config.Properties.Any()) ? Visibility.Visible : Visibility.Collapsed;
 
-        public Visibility AddButtonVisible => (ComponentConfigList.Any()) ? Visibility.Visible : Visibility.Collapsed; 
+        public Visibility AddButtonVisible => (ComponentConfigList.Any()) ? Visibility.Visible : Visibility.Collapsed;
+
+        public string AddButtonName => $"Add - {(ComponentConfig != null ? ComponentConfig.Name : null )}";
     }
 }

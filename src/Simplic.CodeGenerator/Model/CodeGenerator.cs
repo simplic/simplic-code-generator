@@ -11,7 +11,11 @@ namespace Simplic.CodeGenerator
     /// </summary>
     public class CodeGenerator
     {
+        public Guid Guid { get; set; } = Guid.NewGuid();
+        
         public byte[] Log { get; set; }
+
+
 
     }
 }
