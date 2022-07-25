@@ -13,9 +13,11 @@ namespace Simplic.CodeGenerator
     {
         public Guid Guid { get; set; } = Guid.NewGuid();
         
-        public byte[] Log { get; set; }
+        public string Name { get; set; }
+        
+        public DateTime CreateDatetime { get; set; } = DateTime.Now;
 
-
+        public byte[] Data { get; set; }
 
     }
 }

@@ -8,6 +8,13 @@
         xmlns:local="clr-namespace:Simplic.CodeGenerator.UI" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
+    <Window.Resources>
+        <Style TargetType="telerik:RadTreeViewItem">
+            <Setter Property="IsExpanded" Value="True"/>
+        </Style>
+    </Window.Resources>
+    
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -30,7 +37,10 @@
                 </simplic:UIContentPresenter.Templates>
             </simplic:UIContentPresenter>
 
-            <simplic:TextBox Text="Test" Grid.Column="1"/>
+            <StackPanel Grid.Row="1" Margin="0,20,0,0">
+                <Button Content="Speicher Ort" Command="{Binding SelectSavepath}" />
+                <simplic:TextBox IsReadOnly="True" Text="{Binding Savepath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
         </Grid>
     </ScrollViewer>
 </Window>
