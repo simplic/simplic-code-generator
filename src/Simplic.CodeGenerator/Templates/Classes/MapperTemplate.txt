@@ -1,8 +1,8 @@
 ﻿
 
-namespace ..NameSpaceName..
+namespace ..NamespaceName..
 {
-    public class ..ClassMapper..
+    public class ..Name..
     {
         //Write a Mapper
     }

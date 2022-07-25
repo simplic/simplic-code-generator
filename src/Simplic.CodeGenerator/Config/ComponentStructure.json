@@ -4,76 +4,76 @@
       "parents": [ "none" ],
       "template": "Solution48Template",
       "ending": ".sln",
-      "properties": [
+      "propertyList": [
       ]
     },
     "Solution6.0": {
       "parents": [ "none" ],
       "template": "Solution60Template",
       "ending": ".sln",
-      "properties": [
+      "propertyList": [
       ]
     },
     "Project4.8": {
       "parents": [ "none" ],
       "template": "Project48Template",
       "ending": ".csproj",
-      "properties": [
+      "propertyList": [
       ]
     },
     "Project6.0": {
       "parents": [ "none" ],
       "template": "Project60Template",
       "ending": ".csproj",
-      "properties": [
+      "propertyList": [
       ]
     },
     "Classes": {
       "parents": [ "none" ],
       "template": "",
       "ending": "",
-      "properties": [
+      "propertyList": [
       ]
     },
 
     "ProjectMain": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
-      "properties": [
+      "propertyList": [
       ]
     },
     "ProjectDataDB": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
-      "properties": [
+      "propertyList": [
       ]
     },
     "ProjectService": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
-      "properties": [
+      "propertyList": [
       ]
     },
     "ProjectWPFUI": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
-      "properties": [
+      "propertyList": [
       ]
     },
     "ProjectMongoDB": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
-      "properties": [
+      "propertyList": [
       ]
     },
     "ProjectClient": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
-      "properties": [
+      "propertyList": [
       ]
     },
     "ProjectServer": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
-      "properties": [
+      "propertyList": [
       ]
     },
     "ProjectTest": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
-      "properties": [
+      "propertyList": [
       ]
     },
 
@@ -81,10 +81,10 @@
       "parents": [ "ProjectMain", "ProjectDataDB", "ProjectService", "ProjectWPFUI", "ProjectMongoDB", "ProjectClient", "ProjectServer", "ProjectTest" ],
       "template": "ClassTemplate",
       "ending": ".cs",
-      "properties": [
+      "propertyList": [
         {
-          "name": "",
-          "type": ""
+          "name": "NamespaceName",
+          "type": "input"
         }
       ]
     },
@@ -93,10 +93,10 @@
       "parents": [ "ProjectMain", "Classes" ],
       "template": "ModelTemplate",
       "ending": ".cs",
-      "properties": [
+      "propertyList": [
         {
-          "name": "",
-          "type": ""
+          "name": "NamespaceName",
+          "type": "input"
         }
       ]
     },
@@ -104,10 +104,10 @@
       "parents": [ "ProjectMain", "Classes" ],
       "template": "FilterTemplate",
       "ending": ".cs",
-      "properties": [
+      "propertyList": [
         {
-          "name": "",
-          "type": ""
+          "name": "NamespaceName",
+          "type": "input"
         }
       ]
     },
@@ -115,10 +115,14 @@
       "parents": [ "ProjectDataDB", "Classes" ],
       "template": "RepositoryTemplate",
       "ending": ".cs",
-      "properties": [
+      "propertyList": [
+        {
+          "name": "NamespaceName",
+          "type": "input"
+        },
         {
           "name": "ModelName",
-          "type": "FromName"
+          "type": "combo"
         },
         {
           "name": "TableName",
@@ -140,10 +144,18 @@
       "parents": [ "ProjectService", "Classes" ],
       "template": "ServiceTemplate",
       "ending": ".cs",
-      "properties": [
+      "propertyList": [
+        {
+          "name": "NamespaceName",
+          "type": "input"
+        },
+        {
+          "name": "Repository",
+          "type": "combo"
+        },
         {
           "name": "ModelName",
-          "type": "FromName"
+          "type": "combo"
         }
       ],
       "relatedClass": [
@@ -157,10 +169,22 @@
       "parents": [ "ProjectWPFUI", "Classes" ],
       "template": "WindowTemplate",
       "ending": ".xaml",
-      "properties": [
+      "propertyList": [
+        {
+          "name": "NamespaceName",
+          "type": "input"
+        },
         {
           "name": "ModelName",
-          "type": "FromName"
+          "type": "combo"
+        },
+        {
+          "name": "ViewModel",
+          "type": "combo"
+        },
+        {
+          "name": "Service",
+          "type": "combo"
         }
       ],
       "relatedClass": [
@@ -178,10 +202,14 @@
       "parents": [ "ProjectWPFUI", "Classes" ],
       "template": "ViewModelTemplate",
       "ending": ".cs",
-      "properties": [
+      "propertyList": [
+        {
+          "name": "NamespaceName",
+          "type": "input"
+        },
         {
           "name": "ModelName",
-          "type": "FromName"
+          "type": "combo"
         }
       ]
     },
@@ -189,20 +217,33 @@
       "parents": [ "ProjectWPFUI", "Classes" ],
       "template": "ApplicationHelperTemplate",
       "ending": ".cs",
-      "properties": [
+      "propertyList": [
+        {
+          "name": "NamespaceName",
+          "type": "input"
+        },
         {
           "name": "ModelName",
-          "type": "FromName"
+          "type": "combo"
+        },
+        {
+          "name": "ViewModel",
+          "type": "combo"
         },
         {
           "name": "PrimaryKeyColumn",
           "type": "input"
+        },
+        {
+          "name": "InterfaceWindow",
+          "type": "combo"
         }
+        
       ]
     },
     "Client": {
       "parents": [ "ProjectClient", "Classes" ],
-      "properties": [
+      "propertyList": [
         {
           "name": "ModelName",
           "type": "FromName"
@@ -221,7 +262,7 @@
       "parents": [ "ProjectServer", "Classes" ],
       "template": "ControllerTemplate",
       "ending": ".cs",
-      "properties": [
+      "propertyList": [
         {
           "name": "ServiceName",
           "type": "input"
@@ -232,7 +273,7 @@
       "parents": [ "ProjectServer", "Classes" ],
       "template": "MapperTemplate",
       "ending": ".cs",
-      "properties": [
+      "propertyList": [
         {
           "name": "",
           "type": ""
@@ -243,7 +284,7 @@
       "parents": [ "ProjectMongoDB", "Classes" ],
       "template": "MongoDBTemplate",
       "ending": ".cs",
-      "properties": [
+      "propertyList": [
         {
           "name": "ModelName",
           "type": "FromName"
@@ -260,7 +301,7 @@
     },
     "Test": {
       "parents": [ "ProjectTest", "Classes" ],
-      "properties": [
+      "propertyList": [
       ]
     },
 
@@ -268,49 +309,49 @@
       "parents": [ "Solution4.8", "Solution6.0" ],
       "template": "AzurePipelineTemplate",
       "ending": ".yml",
-      "properties": [
+      "propertyList": [
       ]
     },
     "Repo-Cli": {
       "parents": [ "Solution4.8", "Solution6.0" ],
       "template": "RepoCliTemplate",
       "ending": ".json",
-      "properties": [
+      "propertyList": [
       ]
     },
     "Release-Notes": {
       "parents": [ "Solution4.8", "Solution6.0" ],
       "template": "ReleaseNotesTemplate",
       "ending": ".xml",
-      "properties": [
+      "propertyList": [
       ]
     },
     "User-Release-Notes": {
       "parents": [ "Solution4.8", "Solution6.0" ],
       "template": "UserReleaseNotesTemplate",
       "ending": ".xml",
-      "properties": [
+      "propertyList": [
       ]
     },
     "Infrastructure": {
       "parents": [ "Solution4.8", "Solution6.0" ],
       "template": "InfrastructureTemplate",
       "ending": ".json",
-      "properties": [
+      "propertyList": [
       ]
     },
     "Documentation": {
       "parents": [ "Solution4.8", "Solution6.0" ],
       "template": "DocumentationTemplate",
       "ending": ".json",
-      "properties": [
+      "propertyList": [
       ]
     },
     "Localization": {
       "parents": [ "Solution4.8", "Solution6.0" ],
       "template": "LocalizationTemplate",
       "ending": ".json",
-      "properties": [
+      "propertyList": [
       ]
     }
   }

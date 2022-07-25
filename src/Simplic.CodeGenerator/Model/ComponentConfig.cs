@@ -16,7 +16,7 @@ namespace Simplic.CodeGenerator
 
         public IList<string> Parents { get; set; }
 
-        public IList<Property> Properties { get; set; }
+        public IList<Property> PropertyList { get; set; }
 
     }
 }

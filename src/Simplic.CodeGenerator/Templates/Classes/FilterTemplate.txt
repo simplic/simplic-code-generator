@@ -1,11 +1,11 @@
 ﻿using Simplic.OxS.Data;
 
-namespace ..NameSpaceName..
+namespace ..NamespaceName..
 {
     /// <summary>
     /// A mongo db filter for .
     /// </summary>
-    public class ..ClassFilter.. : IFilter<Guid>
+    public class ..Name.. : IFilter<Guid>
     {
         /// <summary>
         /// Gest or sets the id.

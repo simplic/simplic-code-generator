@@ -17,11 +17,13 @@ namespace Simplic.CodeGenerator
 
         public bool IsActive { get; set; }
 
-        public string NameSpace { get; set; }
+        public string Namespace { get; set; }
 
         public ComponentConfig Config { get; set; }
 
         public IList<Component> Children { get; set; } = new List<Component>();
+
+        public IList<Property> Properties { get; set; } = new List<Property>();
 
     }
 }

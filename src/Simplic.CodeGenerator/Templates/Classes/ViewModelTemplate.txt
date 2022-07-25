@@ -3,17 +3,17 @@ using Simplic.Localization;
 using Simplic.Studio.UI;
 using System;
 
-namespace ..NameSpaceName..
+namespace ..NamespaceName..
 {
     /// <summary>
-    /// Represents a viewmodel for managing. <see cref="..ClassModel.."/>
+    /// Represents a viewmodel for managing. <see cref="..ModelName.."/>
     /// </summary>
-    public class ..ClassViewModel.. : ExtendableViewModel, IWindowViewModel<..ClassModel..>
+    public class ..Name.. : ExtendableViewModel, IWindowViewModel<..ModelName..>
     {
-        private ..ClassModel.. model;
+        private ..ModelName.. model;
         private readonly ILocalizationService localizationService;
 
-        public ..ClassName..()
+        public ..Name..()
         {
             localizationService = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILocalizationService>();
         }
@@ -22,15 +22,15 @@ namespace ..NameSpaceName..
         /// Initialize viewmodel instance.
         /// </summary>
         /// <param name="model"></param>
-        public void Initialize(..ClassModel.. model)
+        public void Initialize(..ModelName.. model)
         {
             this.model = model;
         }
 
         /// <summary>
-        /// Gets an instance of the actual <see cref="..ClassModel.."/>
+        /// Gets an instance of the actual <see cref="..ModelName.."/>
         /// </summary>
-        public ..ClassModel.. Model => model;
+        public ..ModelName.. Model => model;
 
         /// <summary>
         /// Gets the actual window title.

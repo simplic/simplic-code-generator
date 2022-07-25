@@ -1,11 +1,11 @@
 ﻿using Simplic.Framework.UI;
 using System;
 
-namespace ..NameSpaceName..
+namespace ..NamespaceName..
 {
-    public abstract class Base..ClassWindow.. : ApplicationWindow<Guid, ..ClassModel.., ..ClassViewModel.., I..ClassService..>, I..ClassWindow..
+    public abstract class Base..Name.. : ApplicationWindow<Guid, ..ModelName.., ..ViewModel.., I..Service..>, I..Name..
     {
-        public Base..ClassWindow..(I..ClassService.. service)
+        public Base..Name..(I..Service.. service)
             : base(service)
         {
 
@@ -13,11 +13,11 @@ namespace ..NameSpaceName..
     }
 
     /// <summary>
-    /// Interaction logic for ..ClassWindow...xaml.
+    /// Interaction logic for ..Name...xaml.
     /// </summary>
-    public partial class ..ClassWindow.. : Base..ClassWindow..
+    public partial class ..Name.. : Base..Name..
     {
-        public ..ClassWindow..(I..ClassService.. service) : base(service)
+        public ..Name..(I..Service.. service) : base(service)
         {
             InitializeComponent();
         }

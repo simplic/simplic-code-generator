@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace ..NameSpaceName..
+namespace ..NamespaceName..
 {
-    public class ..ClassModel..
+    public class ..Name..
     {
-        ..ClassProperties..
+        ..Properties..
     }
 }

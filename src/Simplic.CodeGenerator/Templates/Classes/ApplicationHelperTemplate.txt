@@ -1,9 +1,9 @@
 ﻿using Simplic.Framework.DBUI;
 using System;
 
-namespace ..NameSpaceName..
+namespace ..NamespaceName..
 {
-    public class ..ClassApplicationHelper.. : GridWindowApplicationHelper<Guid, ..ClassModel.., ..ClassViewModel..>
+    public class ..Name.. : GridWindowApplicationHelper<Guid, ..ModelName.., ..ViewModel..>
     {
         /// <summary>
         /// Gets the name of the primary key column.

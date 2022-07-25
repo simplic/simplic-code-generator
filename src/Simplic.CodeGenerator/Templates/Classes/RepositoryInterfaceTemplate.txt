@@ -1,9 +1,9 @@
 ﻿using Simplic.Data;
 using System;
 
-namespace ..NameSpaceName..
+namespace ..NamespaceName..
 {
-    public interface I..ClassRepository.. : IRepositoryBase<Guid, ..ClassModel..>
+    public interface I..Name.. : IRepositoryBase<Guid, ..ModelName..>
     {
 
     }

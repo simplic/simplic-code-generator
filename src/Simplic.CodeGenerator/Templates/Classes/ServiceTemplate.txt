@@ -1,56 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ..NameSpaceName..
+namespace ..NamespaceName..
 {
     /// <summary>
-    /// Implemantion of <see cref="I..ClassService.."/>
+    /// Implemantion of <see cref="I..Name.."/>
     /// </summary>
-    public class ..ClassService.. : I..ClassService..
+    public class ..Name.. : I..Name..
     {
-        private readonly I..ClassRepository.. repository;
+        private readonly I..Repository.. repository;
 
         /// <summary>
         /// Initialize service
         /// </summary>
         /// <param name="repository">Attached repository</param>
-        public ..ClassService..(I..ClassRepository.. repository)
+        public ..Name..(I..Repository.. repository)
         {
             this.repository = repository;
         }
 
         /// <summary>
-        /// Deletes a ..ClassModel..
+        /// Deletes a ..ModelName..
         /// </summary>
-        /// <param name="obj">..ClassModel.. instance</param>
+        /// <param name="obj">..ModelName.. instance</param>
         /// <returns>True if deleting was successfull</returns>
-        public bool Delete(..ClassModel.. obj) => repository.Delete(obj);
+        public bool Delete(..ModelName.. obj) => repository.Delete(obj);
 
         /// <summary>
-        /// Deletes a ..ClassModel..
+        /// Deletes a ..ModelName..
         /// </summary>
-        /// <param name="id">..ClassModel.. id</param>
+        /// <param name="id">..ModelName.. id</param>
         /// <returns>True if deleting was successfull</returns>
         public bool Delete(Guid id) => repository.Delete(id);
 
         /// <summary>
-        /// Loads a..ClassModel.. by its unique id
+        /// Loads a..ModelName.. by its unique id
         /// </summary>
-        /// <param name="id">Unique ..ClassModel.. id</param>
-        /// <returns>..ClassModel.. if exsts, else null</returns>
-        public ..ClassModel.. Get(Guid id) => repository.Get(id);
+        /// <param name="id">Unique ..ModelName.. id</param>
+        /// <returns>..ModelName.. if exsts, else null</returns>
+        public ..ModelName.. Get(Guid id) => repository.Get(id);
 
         /// <summary>
-        /// Returns an enumerable of all ..ClassModel..
+        /// Returns an enumerable of all ..ModelName..
         /// </summary>
-        /// <returns>Enumrable of ..ClassModel..</returns>
-        public IEnumerable<..ClassModel..> GetAll() => repository.GetAll();
+        /// <returns>Enumrable of ..ModelName..</returns>
+        public IEnumerable<..ModelName..> GetAll() => repository.GetAll();
 
         /// <summary>
-        /// Creates or updates a ..ClassModel..
+        /// Creates or updates a ..ModelName..
         /// </summary>
-        /// <param name="obj">..ClassModel.. instance</param>
+        /// <param name="obj">..ModelName.. instance</param>
         /// <returns>True if create or update was successful</returns>
-        public bool Save(..ClassModel.. obj) => repository.Save(obj);
+        public bool Save(..ModelName.. obj) => repository.Save(obj);
     }
 }

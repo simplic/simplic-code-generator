@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\ComponentStructure.json" />
-    <None Include="Config\TemplateStructure.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

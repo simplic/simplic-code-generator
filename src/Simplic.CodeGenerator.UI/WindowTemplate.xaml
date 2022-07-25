@@ -22,7 +22,7 @@
             </Grid.RowDefinitions>
 
             <telerik:RadSplitButton AutoOpenDelay="0:0:0.5" Content="Add"
-                                    CommandParameter="{Binding ConfigView.ComponentConfig}" Command="{Binding AddNewComponent}" >
+                                    CommandParameter="{Binding ConfigView.ComponentConfig}" Command="{Binding AddNewComponentCommand}" >
                 <telerik:RadSplitButton.DropDownContent>
                     <ListBox ItemsSource="{Binding ConfigView.ComponentConfigList}" 
                              SelectedItem="{Binding ConfigView.ComponentConfig, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -58,7 +58,7 @@
 
                             <telerik:RadSplitButton AutoOpenDelay="0:0:0.5" Content="{Binding AddButtonName}" 
                                                       Visibility="{Binding AddButtonVisible}" Grid.Row="2"
-                                                    CommandParameter="{Binding ComponentConfig}" Command="{Binding AddNewComponent}">
+                                                    CommandParameter="{Binding ComponentConfig}" Command="{Binding AddNewComponentCommand}">
                                 <telerik:RadSplitButton.DropDownContent>
                                     <ListBox ItemsSource="{Binding ComponentConfigList}" 
                                              SelectedItem="{Binding ComponentConfig, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">

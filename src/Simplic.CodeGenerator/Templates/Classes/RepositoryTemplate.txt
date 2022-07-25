@@ -3,19 +3,21 @@ using Simplic.Data.Sql;
 using Simplic.Sql;
 using System;
 
-namespace ..NameSpaceName..
+namespace ..NamespaceName..
 {   
-    public class ..ClassRepository.. : SqlRepositoryBase<Guid, ..ClassModel..>, I..ClassRepository..
+    public class ..Name.. : SqlRepositoryBase<Guid, ..ModelName..>, I..Name..
     {
+        private readonly ISqlService sqlService;
+        
         /// <summary>
         /// Initialize repository
         /// </summary>
         /// <param name="sqlService">Sql service instance</param>
         /// <param name="sqlColumnService">Sql column service</param>
         /// <param name="cacheService">Cache service</param>
-        public ..ClassRepository..(ISqlService sqlService, ISqlColumnService sqlColumnService, ICacheService cacheService) : base(sqlService, sqlColumnService, cacheService)
+        public ..Name..(ISqlService sqlService, ISqlColumnService sqlColumnService, ICacheService cacheService) : base(sqlService, sqlColumnService, cacheService)
         {
-            UseCache = true;
+            this.sqlService = sqlService;
         }
 
         /// <summary>
@@ -23,7 +25,7 @@ namespace ..NameSpaceName..
         /// </summary>
         /// <param name="obj">Object instance</param>
         /// <returns>Unique id</returns>
-        public override Guid GetId(..ClassModel.. obj) => obj.Guid;
+        public override Guid GetId(..ModelName.. obj) => obj.Guid;
 
         /// <summary>
         /// Gets the primary column "Guid"

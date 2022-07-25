@@ -38,8 +38,9 @@
             </simplic:UIContentPresenter>
 
             <StackPanel Grid.Row="1" Margin="0,20,0,0">
-                <Button Content="Speicher Ort" Command="{Binding SelectSavepath}" />
+                <Button Content="Speicher Ort" Command="{Binding SelectSavePathCommand}" />
                 <simplic:TextBox IsReadOnly="True" Text="{Binding Savepath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Content="Generate" Command="{Binding GenerateCodeCommand}" />
             </StackPanel>
         </Grid>
     </ScrollViewer>

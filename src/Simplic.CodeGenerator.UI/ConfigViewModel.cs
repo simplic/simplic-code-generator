@@ -12,13 +12,15 @@ namespace Simplic.CodeGenerator.UI
     public class ConfigViewModel : ExtendableViewModelBase
     {
         private readonly IList<ComponentConfig> componentConfigList;
-        private readonly ComponentStructure componentStructure;
+        private ComponentStructure componentStructures;
         private ConfigViewModel parent;
         private string componentName;
         private ComponentConfig componentConfig;
         private ICommand addNewComponent;
         private ConfigViewModel codeGeneratorViewModel;
         private Component component;
+        private string fileName;
+        private string jsonString;
 
 
         public ConfigViewModel(Component component, ConfigViewModel parent)
@@ -27,25 +29,26 @@ namespace Simplic.CodeGenerator.UI
             this.component = component;
             componentName = component.Config.Name;
             componentConfigList = new List<ComponentConfig>();
-            var fileName = @"..\..\..\Simplic.CodeGenerator\Config\ComponentStructure.json";
-            var jsonString = File.ReadAllText(fileName);
-            componentStructure = JsonConvert.DeserializeObject<ComponentStructure>(jsonString);
-
-            foreach(var componentStruc in componentStructure.ComponentStructureDict)
-            {
-                componentStruc.Value.Name = componentStruc.Key;
-                if(componentStruc.Value.Parents.Contains(componentName)) 
-                    componentConfigList.Add(componentStruc.Value);
-            }             
+            
+            SetComponentList();
 
             addNewComponent = new RelayCommand((e) =>
             {
                 if(e == null) 
                     return;
 
-                var newComponent = new Component() { Config = (ComponentConfig)e };
+                var newComponentConfig = (ComponentConfig)e;
+
+                if (newComponentConfig.Name == componentName)
+                    return;
+
+                SetComponentList();
+
+                var componentPropertys = componentConfigList.Where(x => x.Name == newComponentConfig.Name).FirstOrDefault().PropertyList;
+
+                var newComponent = new Component() { Config = newComponentConfig, Properties = componentPropertys };
                 codeGeneratorViewModel = new ConfigViewModel(newComponent, this);
-                codeGeneratorViewModel.ComponentConfig = (ComponentConfig)e;
+                codeGeneratorViewModel.ComponentConfig = newComponentConfig;
                 component.Children.Add(codeGeneratorViewModel.component);
                 ConfigViewModels.Add(codeGeneratorViewModel);
                 
@@ -80,17 +83,34 @@ namespace Simplic.CodeGenerator.UI
             }
         }
 
-        public ICommand AddNewComponent
+        public ICommand AddNewComponentCommand
         {
             get { return this.addNewComponent; }
 
             set => this.addNewComponent = value;
         }
 
-        public Visibility PropertyVisible => (Component.Config.Properties.Any()) ? Visibility.Visible : Visibility.Collapsed;
+
+        public Visibility PropertyVisible => (Component.Config.PropertyList.Any()) ? Visibility.Visible : Visibility.Collapsed;
 
         public Visibility AddButtonVisible => (ComponentConfigList.Any()) ? Visibility.Visible : Visibility.Collapsed;
 
         public string AddButtonName => $"Add - {(ComponentConfig != null ? ComponentConfig.Name : null )}";
+
+        private void SetComponentList()
+        {
+            fileName = @"..\..\..\Simplic.CodeGenerator\Config\ComponentStructure.json";
+            jsonString = File.ReadAllText(fileName);
+            componentStructures = JsonConvert.DeserializeObject<ComponentStructure>(jsonString);
+            componentConfigList.Clear();
+
+            foreach (var componentStructure in componentStructures.ComponentStructureDict)
+            {
+                componentStructure.Value.Name = componentStructure.Key;
+                if (componentStructure.Value.Parents.Contains(componentName))
+                    componentConfigList.Add(componentStructure.Value);
+            }
+
+        }
     }
 }

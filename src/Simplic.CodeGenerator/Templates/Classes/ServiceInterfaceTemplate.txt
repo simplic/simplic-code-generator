@@ -1,7 +1,7 @@
 ﻿
-namespace ..NameSpaceName..
+namespace ..NamespaceName..
 {
-    public interface I..ClassService.. : I..ClassRepository..
+    public interface I..Name.. : I..Repository..
     {
     }
 }
