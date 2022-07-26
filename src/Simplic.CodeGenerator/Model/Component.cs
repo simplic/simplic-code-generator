@@ -17,7 +17,7 @@ namespace Simplic.CodeGenerator
 
         public bool IsActive { get; set; }
 
-        public string Namespace { get; set; }
+        public string Namespace { get; set; } = "";
 
         public ComponentConfig Config { get; set; }
 

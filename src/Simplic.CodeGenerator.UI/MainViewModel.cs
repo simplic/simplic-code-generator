@@ -89,46 +89,61 @@ namespace Simplic.CodeGenerator.UI
 
         private void GenerateCode(Component component)
         {
-            foreach(var child in component.Children)
+            string folderName = Savepath + "\\" + component.Namespace;
+            GenerateFolder(folderName);
+
+            foreach (var child in component.Children)
             {
                 if (child.Children.Any())
                     GenerateCode(child);
 
-                string path = "";
-
                 if (child.Config.Ending == null)
                     continue;
 
-                if(child.Config.Ending == ".cs")
-                    path = $"..\\..\\..\\Simplic.CodeGenerator\\Templates\\Classes\\{child.Config.Template}";
-                else
-                    path = $"..\\..\\..\\Simplic.CodeGenerator\\Templates\\{child.Config.Template}";
+                var path = folderName + "\\" + child.Name + child.Config.Ending;
+                var generateText = ReplaceText(child);
+                File.WriteAllText(path, generateText);
+            }
+        }
 
-                path += ".txt";
-                string readText = File.ReadAllText(path);
-                var properties = new StringBuilder();
+        private void GenerateFolder(string folderName)
+        {
+            if (!Directory.Exists(folderName))
+                Directory.CreateDirectory(folderName);
+        }
 
-                foreach (var childProperty in child.Properties)
+        private string GetTemplatePath(Component component)
+        {
+            string templatePath = "";
+            if (component.Config.Ending == ".cs")
+                return templatePath = $"..\\..\\..\\Simplic.CodeGenerator\\Templates\\Classes\\{component.Config.Template}.txt";
+            else
+                return templatePath = $"..\\..\\..\\Simplic.CodeGenerator\\Templates\\{component.Config.Template}.txt";
+        }
+
+        private string ReplaceText(Component component)
+        {
+            string templatePath = GetTemplatePath(component);
+            string readText = File.ReadAllText(templatePath);
+            var properties = new StringBuilder();
+
+            foreach (var childProperty in component.Properties)
+            {
+                var textHolder = ".." + childProperty.Name + "..";
+                if (childProperty.Type == null)
                 {
-                    var textHolder = ".." + childProperty.Name + "..";
-                    if (childProperty.Type == null)
-                    {
-                        properties.AppendLine().Append(' ', 8).AppendLine("/// <summary>");
-                        properties.Append(' ', 8).AppendLine($"/// {childProperty.Comment}");
-                        properties.Append(' ', 8).AppendLine("/// </summary>");
-                        properties.Append(' ', 8).Append($"public {childProperty.Value} {childProperty.Name} ").AppendLine("{ get; set; }");
-                    }
-                    else
-                        readText = readText.Replace(textHolder, childProperty.Value);
-
+                    properties.AppendLine().Append(' ', 8).AppendLine("/// <summary>");
+                    properties.Append(' ', 8).AppendLine($"/// {childProperty.Comment}");
+                    properties.Append(' ', 8).AppendLine("/// </summary>");
+                    properties.Append(' ', 8).Append($"public {childProperty.Value} {childProperty.Name} ").AppendLine("{ get; set; }");
                 }
-                readText = readText.Replace("..Name..", child.Name);
-                readText = readText.Replace("..Properties..", properties.ToString());
-                var newPath = Savepath + "\\" + child.Config.Template + child.Config.Ending;
-                File.WriteAllText(newPath, readText);
-
+                else
+                    readText = readText.Replace(textHolder, childProperty.Value);
 
             }
+            readText = readText.Replace("..Name..", component.Name);
+            readText = readText.Replace("..Properties..", properties.ToString());
+            return readText;
         }
 
     }
