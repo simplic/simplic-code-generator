@@ -53,7 +53,7 @@
                             <Label Content="{Binding ComponentName}" Visibility="{Binding AddButtonVisible}"/>
                             <StackPanel Orientation="Horizontal" Grid.Row="1">
                                 <Label Content="Name:"/>
-                                <simplic:TextBox Text="{Binding Component.Name}" Width="100"/>
+                                <simplic:TextBox Text="{Binding Component.Name}" MinWidth="100"/>
                             </StackPanel>
 
                             <telerik:RadSplitButton AutoOpenDelay="0:0:0.5" Content="{Binding AddButtonName}" 

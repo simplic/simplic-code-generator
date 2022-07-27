@@ -47,7 +47,9 @@ namespace Simplic.CodeGenerator.UI
                 var componentPropertys = componentConfigList.Where(x => x.Name == newComponentConfig.Name).FirstOrDefault().PropertyList;
 
                 //Fails if adds a new parent component to the Tree in step 3.
-                if (component.Namespace == "" || (component.Namespace.EndsWith("\\src") && !component.Namespace.EndsWith(component.Name)))
+                if (component.Namespace == "" || (component.Namespace.EndsWith("\\src")
+                && !component.Namespace.EndsWith(component.Name)
+                && component.Config.Ending != ".sln"))
                     component.Namespace += (component.Config.Ending != ".sln") ? $"\\{component.Name}" : $"\\{component.Name}\\src";
 
                 var newComponent = new Component()

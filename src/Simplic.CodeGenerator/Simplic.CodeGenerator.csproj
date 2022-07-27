@@ -50,6 +50,7 @@
     <Compile Include="Model\DataType.cs" />
     <Compile Include="Model\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Templates\AssemblyInfo.txt" />
     <Content Include="Templates\AzurePipelineTemplate.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -70,9 +71,13 @@
     <Content Include="Templates\Classes\WindowInterfaceTemplate.txt" />
     <Content Include="Templates\Classes\WindowCsTemplate.txt" />
     <Content Include="Templates\Classes\WindowTemplate.txt" />
+    <Content Include="Templates\DataDBProject48Template.txt" />
+    <Content Include="Templates\MainProject48Template.txt" />
     <Content Include="Templates\Project48Template.txt" />
     <Content Include="Templates\Project60Template.txt" />
     <Content Include="Templates\ReleaseNotesTemplate.txt" />
+    <Content Include="Templates\ServiceProject48Template.txt" />
+    <Content Include="Templates\Solution48Template.txt" />
     <Content Include="Templates\UserReleaseNotesTemplate.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -7,11 +7,7 @@ namespace Simplic.CodeGenerator
     {
         public Guid Guid { get; set; } = Guid.NewGuid();
 
-        public string ComponentType { get; set; }
-
         public string Name { get; set; }
-
-        public string FileExtension { get; set; }
 
         public string Comment { get; set; }
 

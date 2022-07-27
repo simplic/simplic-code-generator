@@ -5,7 +5,7 @@ using System;
 
 namespace ..NamespaceName..
 {   
-    public class ..Name.. : SqlRepositoryBase<Guid, ..ModelName..>, I..Name..
+    public class ..Name.. : SqlRepositoryBase<Guid, ..Model..>, I..Name..
     {
         private readonly ISqlService sqlService;
         
@@ -21,20 +21,20 @@ namespace ..NamespaceName..
         }
 
         /// <summary>
-        /// Gets the unique object id
+        /// Gets the unique object id.
         /// </summary>
         /// <param name="obj">Object instance</param>
         /// <returns>Unique id</returns>
-        public override Guid GetId(..ModelName.. obj) => obj.Guid;
+        public override Guid GetId(..Model.. obj) => obj.Guid;
 
         /// <summary>
-        /// Gets the primary column "Guid"
+        /// Gets the primary column "Guid".
         /// </summary>
-        public override string PrimaryKeyColumn => ..PrimaryKeyColumn..;
+        public override string PrimaryKeyColumn => "..PrimaryKeyColumn..";
 
         /// <summary>
-        /// Gets the table name ..TableName..
+        /// Gets the table name ..TableName...
         /// </summary>
-        public override string TableName => ..TableName..;
+        public override string TableName => "..TableName..";
     }
 }

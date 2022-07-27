@@ -17,10 +17,11 @@ namespace Simplic.CodeGenerator.UI
         private ICommand generateCode;
         private string savePath;
         private Component component;
+        private Component searchComponent;
         public MainViewModel()
         {
             component = new Component();
-           
+
             componentConfig = new ComponentConfig() { Name = "none" };
             component.Config = componentConfig;
 
@@ -51,9 +52,7 @@ namespace Simplic.CodeGenerator.UI
 
             generateCode = new RelayCommand((e) =>
             {
-                var test = ConfigView.ConfigViewModels;
-                var test2 = test.FirstOrDefault();
-                var newComponent = test2.Component;
+                var newComponent = ConfigView.ConfigViewModels.FirstOrDefault().Component;
                 GenerateCode(newComponent);
             });
         }
@@ -63,7 +62,7 @@ namespace Simplic.CodeGenerator.UI
         public string Savepath
         {
             get { return savePath; }
-            set => savePath = value; 
+            set => savePath = value;
         }
 
         public ICommand AddNewComponentCommand
@@ -100,8 +99,13 @@ namespace Simplic.CodeGenerator.UI
                 if (child.Config.Ending == null)
                     continue;
 
-                var path = folderName + "\\" + child.Name + child.Config.Ending;
-                var generateText = ReplaceText(child);
+                (var path, var generateText) = ReplaceText(child, folderName);
+                File.WriteAllText(path, generateText);
+            }
+
+            if(component.Config.Ending == ".sln")
+            {
+                (var path, var generateText) = ReplaceText(component, folderName);
                 File.WriteAllText(path, generateText);
             }
         }
@@ -112,21 +116,46 @@ namespace Simplic.CodeGenerator.UI
                 Directory.CreateDirectory(folderName);
         }
 
-        private string GetTemplatePath(Component component)
+        private string GetTemplatePath(string template)
         {
-            string templatePath = "";
-            if (component.Config.Ending == ".cs")
-                return templatePath = $"..\\..\\..\\Simplic.CodeGenerator\\Templates\\Classes\\{component.Config.Template}.txt";
-            else
-                return templatePath = $"..\\..\\..\\Simplic.CodeGenerator\\Templates\\{component.Config.Template}.txt";
+            return Directory.GetFiles(@"..\..\..\Simplic.CodeGenerator\Templates", template+".txt", SearchOption.AllDirectories).FirstOrDefault();
         }
 
-        private string ReplaceText(Component component)
+        private (string,string) ReplaceText(Component component, string folderName)
         {
-            string templatePath = GetTemplatePath(component);
+            string templatePath = GetTemplatePath(component.Config.Template);
             string readText = File.ReadAllText(templatePath);
             var properties = new StringBuilder();
+            var path = "";
+            var componentFile = component.Name + component.Config.Ending;
 
+            switch (component.Config.Ending)
+            {
+                case ".cs":
+                    (readText, properties) = ReplaceClass(component, readText);
+                    path = folderName + "\\" + componentFile;
+                    break;
+
+                case ".csproj":
+                    (readText, properties) = ReplaceProject(component, readText);
+                    path = folderName + "\\" + component.Name + "\\" + componentFile;
+                    break;
+
+                case ".sln":
+                    (readText, properties) = ReplaceSolution(component, readText);
+                    path = folderName + "\\" + componentFile;
+                    break;
+
+            }
+            readText = readText.Replace("..Guid..", component.Guid.ToString());
+            readText = readText.Replace("..Name..", component.Name);
+            readText = readText.Replace("..Properties..", properties.ToString());
+            return (path, readText);
+        }
+
+        private (string, StringBuilder) ReplaceClass(Component component, string readText)
+        {
+            var properties = new StringBuilder();
             foreach (var childProperty in component.Properties)
             {
                 var textHolder = ".." + childProperty.Name + "..";
@@ -139,12 +168,105 @@ namespace Simplic.CodeGenerator.UI
                 }
                 else
                     readText = readText.Replace(textHolder, childProperty.Value);
-
             }
-            readText = readText.Replace("..Name..", component.Name);
-            readText = readText.Replace("..Properties..", properties.ToString());
+            return (readText, properties);
+        }
+
+        private (string, StringBuilder) ReplaceProject(Component component, string readText)
+        {
+            var properties = new StringBuilder();
+
+            foreach(var child in component.Children)
+            {
+                properties.Append(' ', 4).Append($"<Compile Include=\"{child.Name}{child.Config.Ending}\" />");
+
+                if (component.Children.Count > 1)
+                    properties.AppendLine();
+
+                readText = ReplaceProjectReference(child, readText);
+            }
+            // PROBLEME BEI in Ordner !!!!!!!!!!!!
+            CreateAssembly(component);
+
+            return (readText, properties);
+        }
+
+        private (string, StringBuilder) ReplaceSolution(Component component, string readText)
+        {
+            var properties = new StringBuilder();
+            var globalSection = new StringBuilder();
+            var projectSection = new StringBuilder();
+
+            foreach(var child in component.Children)
+            {
+                properties.Append($"Project(\"{{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}}\") = \"{child.Name}\", \"{child.Name}" +
+                $"\\{child.Name}{child.Config.Ending}\", \"{{{child.Guid}}}\"").AppendLine("EndProject").AppendLine();
+
+                globalSection.Append(' ', 8).Append($"{{{child.Guid}}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU").AppendLine();
+                globalSection.Append(' ', 8).Append($"{{{child.Guid}}}.Debug|Any CPU.Build.0 = Debug|Any CPU").AppendLine();
+                globalSection.Append(' ', 8).Append($"{{{child.Guid}}}.Release|Any CPU.ActiveCfg = Release|Any CPU").AppendLine();
+                globalSection.Append(' ', 8).Append($"{{{child.Guid}}}.Release|Any CPU.Build.0 = Release|Any CPU").AppendLine();
+
+                if(child.Config.Ending != ".csproj")
+                {
+
+                }
+            }
+
+            readText = readText.Replace("..GlobalSection..", globalSection.ToString());
+
+            return (readText, properties);
+        }
+
+        private string ReplaceProjectReference(Component component, string readText)
+        {
+            string[] projects = { "Model", "Repository", "Service" };
+            foreach (var project in projects)
+            {
+                var property = component.Properties.Where(x => x.Name == project).FirstOrDefault();
+                if (property == null)
+                    continue;
+
+                SearchComponent(property, null);
+                if (searchComponent == null)
+                    continue;
+
+                var path = searchComponent.Name + $"\\{searchComponent.Name}{searchComponent.Config.Ending}";
+                readText = readText.Replace($"..{project}Path..", path);
+                readText = readText.Replace($"..{project}Guid..", searchComponent.Guid.ToString());
+                readText = readText.Replace($"..{project}Name..", searchComponent.Name);
+            }
+            
             return readText;
         }
 
+        private void SearchComponent(Property property, Component component)
+        {
+            var child = component;
+            if (component == null)
+                child = ConfigView.ConfigViewModels.FirstOrDefault().Component;
+
+            foreach(var child2 in child.Children)
+            {
+                if (child2.Name == property.Value)
+                    searchComponent = child;
+
+                if (child2.Children.Any())
+                    SearchComponent(property, child2);
+            }
+        }
+
+        private void CreateAssembly(Component component)
+        {
+            var assembly = File.ReadAllText(GetTemplatePath("AssemblyInfo"));
+            var assemblyFolder = Savepath + "\\" + component.Namespace + "\\Properties";
+            GenerateFolder(assemblyFolder);
+
+            assembly = assembly.Replace("..Name..", component.Name);
+            assembly = assembly.Replace("..Guid..", component.Guid.ToString());
+
+            var savePath = assemblyFolder + "\\AssemblyInfo.cs";
+            File.WriteAllText(savePath, assembly);
+        }
     }
 }

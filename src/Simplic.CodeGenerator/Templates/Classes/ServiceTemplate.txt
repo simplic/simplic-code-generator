@@ -20,37 +20,37 @@ namespace ..NamespaceName..
         }
 
         /// <summary>
-        /// Deletes a ..ModelName..
+        /// Deletes a ..Model..
         /// </summary>
-        /// <param name="obj">..ModelName.. instance</param>
+        /// <param name="obj">..Model.. instance</param>
         /// <returns>True if deleting was successfull</returns>
-        public bool Delete(..ModelName.. obj) => repository.Delete(obj);
+        public bool Delete(..Model.. obj) => repository.Delete(obj);
 
         /// <summary>
-        /// Deletes a ..ModelName..
+        /// Deletes a ..Model..
         /// </summary>
-        /// <param name="id">..ModelName.. id</param>
+        /// <param name="id">..Model.. id</param>
         /// <returns>True if deleting was successfull</returns>
         public bool Delete(Guid id) => repository.Delete(id);
 
         /// <summary>
-        /// Loads a..ModelName.. by its unique id
+        /// Loads a..Model.. by its unique id
         /// </summary>
-        /// <param name="id">Unique ..ModelName.. id</param>
-        /// <returns>..ModelName.. if exsts, else null</returns>
-        public ..ModelName.. Get(Guid id) => repository.Get(id);
+        /// <param name="id">Unique ..Model.. id</param>
+        /// <returns>..Model.. if exsts, else null</returns>
+        public ..Model.. Get(Guid id) => repository.Get(id);
 
         /// <summary>
-        /// Returns an enumerable of all ..ModelName..
+        /// Returns an enumerable of all ..Model..
         /// </summary>
-        /// <returns>Enumrable of ..ModelName..</returns>
-        public IEnumerable<..ModelName..> GetAll() => repository.GetAll();
+        /// <returns>Enumrable of ..Model..</returns>
+        public IEnumerable<..Model..> GetAll() => repository.GetAll();
 
         /// <summary>
-        /// Creates or updates a ..ModelName..
+        /// Creates or updates a ..Model..
         /// </summary>
-        /// <param name="obj">..ModelName.. instance</param>
+        /// <param name="obj">..Model.. instance</param>
         /// <returns>True if create or update was successful</returns>
-        public bool Save(..ModelName.. obj) => repository.Save(obj);
+        public bool Save(..Model.. obj) => repository.Save(obj);
     }
 }

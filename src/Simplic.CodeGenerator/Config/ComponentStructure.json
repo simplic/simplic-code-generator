@@ -16,8 +16,6 @@
     },
     "Project4.8": {
       "parents": [ "none" ],
-      "template": "Project48Template",
-      "ending": ".csproj",
       "propertyList": [
       ]
     },
@@ -38,21 +36,29 @@
 
     "ProjectMain": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
+      "template": "MainProject48Template",
+      "ending": ".csproj",
       "propertyList": [
       ]
     },
     "ProjectDataDB": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
+      "template": "DataDBProject48Template",
+      "ending": ".csproj",
       "propertyList": [
       ]
     },
     "ProjectService": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
+      "template": "ServiceProject48Template",
+      "ending": ".csproj",
       "propertyList": [
       ]
     },
     "ProjectWPFUI": {
       "parents": [ "Solution4.8", "Solution6.0", "Project4.8", "Project6.0" ],
+      "template": "WPFUIProject48Template",
+      "ending": ".csproj",
       "propertyList": [
       ]
     },
@@ -121,7 +127,7 @@
           "type": "input"
         },
         {
-          "name": "ModelName",
+          "name": "Model",
           "type": "combo"
         },
         {
@@ -154,7 +160,7 @@
           "type": "combo"
         },
         {
-          "name": "ModelName",
+          "name": "Model",
           "type": "combo"
         }
       ],
@@ -175,7 +181,7 @@
           "type": "input"
         },
         {
-          "name": "ModelName",
+          "name": "Model",
           "type": "combo"
         },
         {
@@ -208,7 +214,7 @@
           "type": "input"
         },
         {
-          "name": "ModelName",
+          "name": "Model",
           "type": "combo"
         }
       ]
@@ -223,7 +229,7 @@
           "type": "input"
         },
         {
-          "name": "ModelName",
+          "name": "Model",
           "type": "combo"
         },
         {
@@ -245,8 +251,8 @@
       "parents": [ "ProjectClient", "Classes" ],
       "propertyList": [
         {
-          "name": "ModelName",
-          "type": "FromName"
+          "name": "Model",
+          "type": "combo"
         },
         {
           "name": "ConnectionName",
@@ -264,8 +270,8 @@
       "ending": ".cs",
       "propertyList": [
         {
-          "name": "ServiceName",
-          "type": "input"
+          "name": "Service",
+          "type": "combo"
         }
       ]
     },
