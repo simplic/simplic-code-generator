@@ -1,0 +1,7 @@
+﻿
+namespace ..NamespaceName..
+{
+    public interface I..Name.. : I..Repository..
+    {
+    }
+}

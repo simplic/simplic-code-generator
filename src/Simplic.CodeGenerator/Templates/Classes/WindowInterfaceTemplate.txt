@@ -1,0 +1,12 @@
+﻿using Simplic.Studio.UI;
+using System;
+
+namespace ..NamespaceName..
+{
+    /// <summary>
+    /// An interface for the ..Name.. .
+    /// </summary>
+    public interface I..Name.. : IWindow<Guid, ..Model.., ..ViewModel..>
+    {
+    }
+}

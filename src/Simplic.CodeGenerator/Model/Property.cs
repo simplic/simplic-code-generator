@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace Simplic.CodeGenerator
 {
-    /// <summary>
-    /// Wird immer gebraucht 
-    /// </summary>
-    public class CodeGenerator
+    public class Property
     {
         public Guid Guid { get; set; } = Guid.NewGuid();
-        
+
         public string Name { get; set; }
-        
-        public DateTime CreateDatetime { get; set; } = DateTime.Now;
 
-        public byte[] Data { get; set; }
+        public string Value { get; set; }
 
+        public string Comment { get; set; }
+
+        public string Type { get; set; }
     }
 }

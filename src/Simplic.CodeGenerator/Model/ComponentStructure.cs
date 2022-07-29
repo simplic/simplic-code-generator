@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Simplic.CodeGenerator
 {
-    public class ComponentMongoRepository : Component
+    public class ComponentStructure
     {
-        public string FilterName { get; set; }
-
-        public string CollectionName { get; set; }
+        public Dictionary<string, ComponentConfig> ComponentStructureDict = new Dictionary<string, ComponentConfig>();
     }
 }

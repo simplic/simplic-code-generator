@@ -5,6 +5,8 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.CodeGenerator", "Simplic.CodeGenerator\Simplic.CodeGenerator.csproj", "{0E3D9B36-95CC-4290-9819-4AFF5AFEAA7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplic.CodeGenerator.UI", "Simplic.CodeGenerator.UI\Simplic.CodeGenerator.UI.csproj", "{DDF4FF46-CAAB-46B7-BED9-37E8F492C2FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0E3D9B36-95CC-4290-9819-4AFF5AFEAA7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E3D9B36-95CC-4290-9819-4AFF5AFEAA7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E3D9B36-95CC-4290-9819-4AFF5AFEAA7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF4FF46-CAAB-46B7-BED9-37E8F492C2FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF4FF46-CAAB-46B7-BED9-37E8F492C2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF4FF46-CAAB-46B7-BED9-37E8F492C2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF4FF46-CAAB-46B7-BED9-37E8F492C2FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

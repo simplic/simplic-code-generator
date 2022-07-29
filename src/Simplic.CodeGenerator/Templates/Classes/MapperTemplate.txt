@@ -1,0 +1,9 @@
+﻿
+
+namespace ..NamespaceName..
+{
+    public class ..Name..
+    {
+        //Write a Mapper
+    }
+}

@@ -1,0 +1,25 @@
+﻿using Simplic.Framework.UI;
+using System;
+
+namespace ..NamespaceName..
+{
+    public abstract class Base..Name.. : ApplicationWindow<Guid, ..Model.., ..ViewModel.., I..Service..>, I..Name..
+    {
+        public Base..Name..(I..Service.. service)
+            : base(service)
+        {
+
+        }
+    }
+
+    /// <summary>
+    /// Interaction logic for ..Name...xaml.
+    /// </summary>
+    public partial class ..Name.. : Base..Name..
+    {
+        public ..Name..(I..Service.. service) : base(service)
+        {
+            InitializeComponent();
+        }
+    }
+}

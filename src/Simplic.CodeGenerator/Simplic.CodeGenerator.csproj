@@ -43,18 +43,16 @@
   <ItemGroup>
     <Compile Include="Interfaces\ICodeGeneratorRepository.cs" />
     <Compile Include="Interfaces\ICodeGeneratorService.cs" />
-    <Compile Include="Model\ClassTypecs.cs" />
     <Compile Include="Model\CodeGenerator.cs" />
-    <Compile Include="Model\ComponentClass.cs" />
-    <Compile Include="Model\ComponentClassProperty.cs" />
-    <Compile Include="Model\ComponentMongoRepository.cs" />
-    <Compile Include="Model\ComponentProject.cs" />
-    <Compile Include="Model\ComponentSqlClass.cs" />
-    <Compile Include="Model\ComponentServiceClass.cs" />
     <Compile Include="Model\Component.cs" />
+    <Compile Include="Model\ComponentConfig.cs" />
+    <Compile Include="Model\ComponentStructure.cs" />
     <Compile Include="Model\DataType.cs" />
+    <Compile Include="Model\Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Templates\AzurePipelineTemplate.yml" />
+    <Content Include="Templates\AssemblyInfo.txt" />
+    <Content Include="Templates\AzurePipelineTemplate.txt" />
+    <Content Include="Templates\WPFUIProject48Template.txt" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Simplic.Data">
@@ -62,7 +60,29 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Templates\ReleaseNotesTemplate.xml" />
+    <Content Include="Templates\Classes\ApplicationHelperTemplate.txt" />
+    <Content Include="Templates\Classes\FilterTemplate.txt" />
+    <Content Include="Templates\Classes\MapperTemplate.txt" />
+    <Content Include="Templates\Classes\ModelTemplate.txt" />
+    <Content Include="Templates\Classes\RepositoryInterfaceTemplate.txt" />
+    <Content Include="Templates\Classes\RepositoryTemplate.txt" />
+    <Content Include="Templates\Classes\ServiceInterfaceTemplate.txt" />
+    <Content Include="Templates\Classes\ServiceTemplate.txt" />
+    <Content Include="Templates\Classes\ViewModelTemplate.txt" />
+    <Content Include="Templates\Classes\WindowInterfaceTemplate.txt" />
+    <Content Include="Templates\Classes\WindowCsTemplate.txt" />
+    <Content Include="Templates\Classes\WindowTemplate.txt" />
+    <Content Include="Templates\DataDBProject48Template.txt" />
+    <Content Include="Templates\MainProject48Template.txt" />
+    <Content Include="Templates\Project48Template.txt" />
+    <Content Include="Templates\Project60Template.txt" />
+    <Content Include="Templates\ReleaseNotesTemplate.txt" />
+    <Content Include="Templates\ServiceProject48Template.txt" />
+    <Content Include="Templates\Solution48Template.txt" />
+    <Content Include="Templates\UserReleaseNotesTemplate.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Config\ComponentStructure.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

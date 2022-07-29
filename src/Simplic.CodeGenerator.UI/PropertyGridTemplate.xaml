@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:telerikGrid="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView">
+    <DataTemplate x:Key="PropertyGridTemplate">
+        <telerikGrid:RadGridView ItemsSource="{Binding Component.Properties}" AutoGenerateColumns="False"
+                                 CanUserReorderColumns="False" CanUserSortColumns="False"
+                                 IsFilteringAllowed="False" ShowGroupPanel="False"
+                                 CanUserInsertRows="True" NewRowPosition="Bottom" GroupRenderMode="Flat">
+            <telerikGrid:RadGridView.Columns>
+                <telerikGrid:GridViewDataColumn Header="PropertyName" DataMemberBinding="{Binding Name}" />
+                <telerikGrid:GridViewDataColumn Header="Value" DataMemberBinding="{Binding Value}" />
+                <telerikGrid:GridViewDataColumn Header="Comment" DataMemberBinding="{Binding Comment}" />
+            </telerikGrid:RadGridView.Columns>
+        </telerikGrid:RadGridView>
+    </DataTemplate>
+    
+</ResourceDictionary>
