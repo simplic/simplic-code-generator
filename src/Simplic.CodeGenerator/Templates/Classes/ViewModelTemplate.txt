@@ -1,4 +1,4 @@
-﻿using using Simplic.Framework.UI;
+﻿using Simplic.Framework.UI;
 using Simplic.Localization;
 using Simplic.Studio.UI;
 using System;
@@ -6,11 +6,11 @@ using System;
 namespace ..NamespaceName..
 {
     /// <summary>
-    /// Represents a viewmodel for managing. <see cref="..ModelName.."/>
+    /// Represents a viewmodel for managing. <see cref="..Model.."/>
     /// </summary>
-    public class ..Name.. : ExtendableViewModel, IWindowViewModel<..ModelName..>
+    public class ..Name.. : ExtendableViewModel, IWindowViewModel<..Model..>
     {
-        private ..ModelName.. model;
+        private ..Model.. model;
         private readonly ILocalizationService localizationService;
 
         public ..Name..()
@@ -22,15 +22,15 @@ namespace ..NamespaceName..
         /// Initialize viewmodel instance.
         /// </summary>
         /// <param name="model"></param>
-        public void Initialize(..ModelName.. model)
+        public void Initialize(..Model.. model)
         {
             this.model = model;
         }
 
         /// <summary>
-        /// Gets an instance of the actual <see cref="..ModelName.."/>
+        /// Gets an instance of the actual <see cref="..Model.."/>
         /// </summary>
-        public ..ModelName.. Model => model;
+        public ..Model.. Model => model;
 
         /// <summary>
         /// Gets the actual window title.

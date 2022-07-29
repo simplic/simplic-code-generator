@@ -3,7 +3,7 @@ using System;
 
 namespace ..NamespaceName..
 {
-    public interface I..Name.. : IRepositoryBase<Guid, ..ModelName..>
+    public interface I..Name.. : IRepositoryBase<Guid, ..Model..>
     {
 
     }

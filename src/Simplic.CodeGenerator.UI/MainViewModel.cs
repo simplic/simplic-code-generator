@@ -1,5 +1,6 @@
 ﻿using Simplic.UI.MVC;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace Simplic.CodeGenerator.UI
         private string savePath;
         private Component component;
         private Component searchComponent;
+        private StringBuilder projectInterface = new StringBuilder();
         public MainViewModel()
         {
             component = new Component();
@@ -54,6 +56,11 @@ namespace Simplic.CodeGenerator.UI
             {
                 var newComponent = ConfigView.ConfigViewModels.FirstOrDefault().Component;
                 GenerateCode(newComponent);
+
+                var mainPath = Savepath + "\\" + searchComponent.Namespace + "\\" + searchComponent.Name + searchComponent.Config.Ending;
+                var mainProject = File.ReadAllText(mainPath);
+                mainProject = mainProject.Replace("..Interfaces..", projectInterface.ToString());
+                File.WriteAllText(mainPath, mainProject);
             });
         }
 
@@ -136,6 +143,11 @@ namespace Simplic.CodeGenerator.UI
                     path = folderName + "\\" + componentFile;
                     break;
 
+                case ".xaml.cs":
+                    (readText, properties) = ReplaceClass(component, readText);
+                    path = folderName + "\\" + component.Name + component.Config.Ending;
+                    break;
+
                 case ".csproj":
                     (readText, properties) = ReplaceProject(component, readText);
                     path = folderName + "\\" + component.Name + "\\" + componentFile;
@@ -156,6 +168,15 @@ namespace Simplic.CodeGenerator.UI
         private (string, StringBuilder) ReplaceClass(Component component, string readText)
         {
             var properties = new StringBuilder();
+            var relatedClasses = new List<string>();
+            SearchComponent("ProjectMain", null);
+
+            if(component.Config.RelatedClass != null)
+            {
+                foreach (var relatedClass in component.Config.RelatedClass)
+                    relatedClasses.Add(File.ReadAllText(GetTemplatePath(relatedClass.Template)));
+            }
+            
             foreach (var childProperty in component.Properties)
             {
                 var textHolder = ".." + childProperty.Name + "..";
@@ -167,8 +188,52 @@ namespace Simplic.CodeGenerator.UI
                     properties.Append(' ', 8).Append($"public {childProperty.Value} {childProperty.Name} ").AppendLine("{ get; set; }");
                 }
                 else
+                {
                     readText = readText.Replace(textHolder, childProperty.Value);
+                    if (!relatedClasses.Any())
+                        continue;
+
+                    for (int i = 0; i < relatedClasses.Count(); i++)
+                    {
+                        //Interface von UI falscher Namespace noch fixen!.
+                        if (textHolder == "..NamespaceName..")
+                            continue;
+
+                        relatedClasses[i] = relatedClasses[i].Replace(textHolder, childProperty.Value);
+                    }
+                        
+                }    
             }
+            if(!relatedClasses.Any())
+                return (readText, properties);
+
+            var j = 0;
+            var interfaceFolder = Savepath + "\\" + searchComponent.Namespace + "\\Interface";
+            GenerateFolder(interfaceFolder);
+            foreach (var relatedClass in component.Config.RelatedClass)
+            {
+                relatedClasses[j] = relatedClasses[j].Replace("..Guid..", component.Guid.ToString());
+                relatedClasses[j] = relatedClasses[j].Replace("..Name..", component.Name);
+                var path = "";
+                if(relatedClass.Name == "Interface")
+                {
+                    relatedClasses[j] = relatedClasses[j].Replace("..NamespaceName..", searchComponent.Name);
+                    var fileName = relatedClass.Prefix + component.Name + relatedClass.Ending;
+                    path = interfaceFolder + "\\" + fileName;
+                    projectInterface.Append(' ', 4).Append($"<Compile Include=\"Interface\\{fileName}\" />").AppendLine();
+                }
+                else
+                {
+                    var interfaceNamespace = component.Properties.Where(x => x.Name == "NamespaceName").FirstOrDefault().Value;
+                    relatedClasses[j] = relatedClasses[j].Replace("..NamespaceName..", interfaceNamespace);
+                    path = Savepath + "\\" + component.Namespace + "\\" + relatedClass.Prefix + component.Name + relatedClass.Ending;
+                }
+                    
+
+                File.WriteAllText(path, relatedClasses[j]);
+                j++;
+            }
+            
             return (readText, properties);
         }
 
@@ -178,14 +243,21 @@ namespace Simplic.CodeGenerator.UI
 
             foreach(var child in component.Children)
             {
-                properties.Append(' ', 4).Append($"<Compile Include=\"{child.Name}{child.Config.Ending}\" />");
+                if (child.Config.RelatedClass != null && child.Config.RelatedClass.Where(x=> x.Name == "WindowInterface").Any())
+                {
+                    readText = readText.Replace("..Window..", child.Name + ".xaml");
+                    foreach (var child2 in child.Config.RelatedClass.Where(x => x.Prefix == "I"))
+                        properties.Append(' ', 4).Append($"<Compile Include=\"I{child.Name}{child2.Ending}\" />");
+                }
+                else
+                {
+                    properties.Append(' ', 4).Append($"<Compile Include=\"{child.Name}{child.Config.Ending}\" />");
 
-                if (component.Children.Count > 1)
-                    properties.AppendLine();
-
+                    if (component.Children.Count > 1)
+                        properties.AppendLine();
+                }  
                 readText = ReplaceProjectReference(child, readText);
             }
-            // PROBLEME BEI in Ordner !!!!!!!!!!!!
             CreateAssembly(component);
 
             return (readText, properties);
@@ -209,7 +281,7 @@ namespace Simplic.CodeGenerator.UI
 
                 if(child.Config.Ending != ".csproj")
                 {
-
+                    //ENV Folder etc.
                 }
             }
 
@@ -227,7 +299,9 @@ namespace Simplic.CodeGenerator.UI
                 if (property == null)
                     continue;
 
-                SearchComponent(property, null);
+                var searchItem = property.Value;
+
+                SearchComponent(searchItem, null);
                 if (searchComponent == null)
                     continue;
 
@@ -240,20 +314,27 @@ namespace Simplic.CodeGenerator.UI
             return readText;
         }
 
-        private void SearchComponent(Property property, Component component)
+        private void SearchComponent(string searchItem, Component component)
         {
             var child = component;
             if (component == null)
                 child = ConfigView.ConfigViewModels.FirstOrDefault().Component;
 
+            if (child.Config.Name == searchItem)
+                searchComponent = child;
+
             foreach(var child2 in child.Children)
             {
-                if (child2.Name == property.Value)
+                if (child2.Name == searchItem)
                     searchComponent = child;
 
+                if (child2.Config.Name == searchItem)
+                    searchComponent = child2;
+
                 if (child2.Children.Any())
-                    SearchComponent(property, child2);
+                    SearchComponent(searchItem, child2);
             }
+
         }
 
         private void CreateAssembly(Component component)

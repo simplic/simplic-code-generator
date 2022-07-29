@@ -45,6 +45,10 @@ namespace Simplic.CodeGenerator.UI
                 SetComponentList();
 
                 var componentPropertys = componentConfigList.Where(x => x.Name == newComponentConfig.Name).FirstOrDefault().PropertyList;
+                var namespaceProp = componentPropertys.Where(x => x.Name == "NamespaceName").FirstOrDefault();
+
+                if (namespaceProp != null)
+                    namespaceProp.Value = component.Name;
 
                 //Fails if adds a new parent component to the Tree in step 3.
                 if (component.Namespace == "" || (component.Namespace.EndsWith("\\src")

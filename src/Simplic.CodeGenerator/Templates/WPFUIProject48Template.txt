@@ -31,36 +31,69 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
 ..Properties..
+    <Compile Include="..Window...cs">
+      <DependentUpon>..Window..</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..RepositoryPath..">
-      <Project>{..RepositoryGuid..}</Project>
-      <Name>..RepositoryName..</Name>
-    </ProjectReference>
+    <Page Include="..Window..">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..ModelPath..">
       <Project>{..ModelGuid..}</Project>
       <Name>..ModelName..</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..ServicePath..">
+      <Project>{..ServiceGuid..}</Project>
+      <Name>..ServiceName..</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>13.0.1</Version>
+    <PackageReference Include="CommonServiceLocator">
+      <Version>2.0.6</Version>
+    </PackageReference>
+    <PackageReference Include="Simplic.Framework">
+      <Version>8.0.21.908</Version>
+    </PackageReference>
+    <PackageReference Include="Simplic.Framework.Base">
+      <Version>8.0.21.908</Version>
     </PackageReference>
     <PackageReference Include="Simplic.Data">
       <Version>1.7.121.809</Version>
+    </PackageReference>
+    <PackageReference Include="Simplic.Studio.UI">
+      <Version>1.6.721.914</Version>
+    </PackageReference>
+    <PackageReference Include="Simplic.Studio.UI.Input">
+      <Version>1.5.821.718</Version>
+    </PackageReference>
+    <PackageReference Include="Simplic.UI">
+      <Version>7.2.1121.812</Version>
+    </PackageReference>
+    <PackageReference Include="Simplic.Framework.DBUI">
+      <Version>8.0.21.908</Version>
+    </PackageReference>
+    <PackageReference Include="Simplic.Localization">
+      <Version>6.1.20.322</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

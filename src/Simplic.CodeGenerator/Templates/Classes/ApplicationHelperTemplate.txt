@@ -3,12 +3,12 @@ using System;
 
 namespace ..NamespaceName..
 {
-    public class ..Name.. : GridWindowApplicationHelper<Guid, ..ModelName.., ..ViewModel..>
+    public class ..Name.. : GridWindowApplicationHelper<Guid, ..Model.., ..ViewModel..>
     {
         /// <summary>
         /// Gets the name of the primary key column.
         /// </summary>
-        public override string PrimaryKeyColumn => ..PrimaryKeyColumnValue..;
+        public override string PrimaryKeyColumn => "..PrimaryKeyColumn..";
 
         /// <summary>
         /// Gets the type of the window interface.

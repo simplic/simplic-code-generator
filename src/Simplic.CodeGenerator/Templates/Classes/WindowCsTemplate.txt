@@ -3,7 +3,7 @@ using System;
 
 namespace ..NamespaceName..
 {
-    public abstract class Base..Name.. : ApplicationWindow<Guid, ..ModelName.., ..ViewModel.., I..Service..>, I..Name..
+    public abstract class Base..Name.. : ApplicationWindow<Guid, ..Model.., ..ViewModel.., I..Service..>, I..Name..
     {
         public Base..Name..(I..Service.. service)
             : base(service)

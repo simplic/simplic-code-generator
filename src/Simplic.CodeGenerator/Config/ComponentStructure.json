@@ -141,7 +141,9 @@
       ],
       "relatedClass": [
         {
-          "name": "RepositoryInterfaceTemplate",
+          "name": "Interface",
+          "template": "RepositoryInterfaceTemplate",
+          "prefix": "I",
           "ending": ".cs"
         }
       ]
@@ -166,15 +168,17 @@
       ],
       "relatedClass": [
         {
-          "name": "ServiceInterfaceTemplate",
+          "name": "Interface",
+          "template": "ServiceInterfaceTemplate",
+          "prefix": "I",
           "ending": ".cs"
         }
       ]
     },
-    "WPF": {
+    "Window": {
       "parents": [ "ProjectWPFUI", "Classes" ],
-      "template": "WindowTemplate",
-      "ending": ".xaml",
+      "template": "WindowCsTemplate",
+      "ending": ".xaml.cs",
       "propertyList": [
         {
           "name": "NamespaceName",
@@ -195,11 +199,15 @@
       ],
       "relatedClass": [
         {
-          "name": "WindowCsTemplate",
-          "ending": ".xaml.cs"
+          "name": "WindowInterface",
+          "template": "WindowTemplate",
+          "prefix":  "",
+          "ending": ".xaml"
         },
         {
-          "name": "WindowInterfaceTemplate",
+          "name": "WindowInterface",
+          "template": "WindowInterfaceTemplate",
+          "prefix": "I",
           "ending": ".cs"
         }
       ]

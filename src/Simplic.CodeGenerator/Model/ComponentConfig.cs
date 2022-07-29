@@ -14,9 +14,13 @@ namespace Simplic.CodeGenerator
 
         public string Ending { get; set; }
 
+        public string Prefix { get; set; }
+
         public IList<string> Parents { get; set; }
 
         public IList<Property> PropertyList { get; set; }
+
+        public IList<ComponentConfig> RelatedClass { get; set; } 
 
     }
 }

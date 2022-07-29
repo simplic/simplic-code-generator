@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Templates\AssemblyInfo.txt" />
     <Content Include="Templates\AzurePipelineTemplate.txt" />
+    <Content Include="Templates\WPFUIProject48Template.txt" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Simplic.Data">
