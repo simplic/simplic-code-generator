@@ -1,5 +1,5 @@
 ﻿<ReleaseNotes>
   <ChangeSet>
-    <Change type=" " Text</Change>
+    <Change type=" "> Text</Change>
   </ChangeSet>
 </ReleaseNotes>

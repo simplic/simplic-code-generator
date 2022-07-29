@@ -95,6 +95,7 @@ namespace Simplic.CodeGenerator.UI
             set
             {
                 PropertySetter(value, (v) => this.componentConfig = v);
+                AddNewComponentCommand.Execute(this.ComponentConfig);
                 RaisePropertyChanged(nameof(AddButtonName));
             }
         }
